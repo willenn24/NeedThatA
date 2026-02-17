@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GradeForge — Overkill Grade Calculator</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">GF</div>
+        <div class="brand-text">
+          <div class="brand-title">GradeForge</div>
+          <div class="brand-sub">Overkill Grade Calculator</div>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn btn-primary" id="addClassBtn">
+          <span class="icon">+</span> Add Class
+        </button>
+        <button class="btn btn-ghost" id="themeBtn" title="Toggle theme">
+          <span class="icon" id="themeIcon">☾</span>
+          <span class="hide-sm">Theme</span>
+        </button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Your Classes</div>
+        <div class="class-list" id="classList"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-ghost" id="exportBtn" title="Export all classes as JSON">
+          ⤓ Export
+        </button>
+        <button class="btn btn-ghost" id="importBtn" title="Import JSON">
+          ⤒ Import
+        </button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+        <div class="muted tiny">Saved automatically (localStorage).</div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="page-title" id="pageTitle">Welcome</div>
+          <div class="page-sub" id="pageSub">Create a class to begin.</div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-ghost" id="deleteClassBtn" title="Delete current class" disabled>🗑 Delete</button>
+        </div>
+      </header>
+
+      <section class="content" id="content"></section>
+    </main>
+  </div>
+
+  <!-- Modal: Add Class -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="modalTitle">Create a Class</div>
+          <div class="modal-sub">Give it a name (e.g., “Thermo”, “Circuits”, “Ethics”).</div>
+        </div>
+        <button class="btn btn-ghost" id="closeModalBtn" title="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="label">Class Name</label>
+        <input class="input" id="classNameInput" placeholder="Enter class name…" maxlength="40"/>
+        <div class="tiny muted" style="margin-top:8px;">
+          Tip: You can add multiple classes and switch between them from the left sidebar.
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" id="cancelModalBtn">Cancel</button>
+        <button class="btn btn-primary" id="createClassBtn">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
